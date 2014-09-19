@@ -29,6 +29,5 @@ ADD container-files /
 
 EXPOSE 22
 
-# Run container with following ENV to add GitHub users' public keys.
-# This is the only way to manage internal SSH keys for 'www' user.
-#ENV IMPORT_GITHUB_PUB_KEYS <github>,<usernames>
+# Run container with following ENV variable to add listed users' keys from GitHub.
+#ENV IMPORT_GITHUB_PUB_KEYS <github>,<username(s)>

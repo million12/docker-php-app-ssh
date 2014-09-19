@@ -1,13 +1,18 @@
 #!/bin/bash
 
-#mkdir -p /data/www/.ssh && touch /data/www/.ssh/authorized_keys
-#chmod 700 /data/www/.ssh && chmod 600 /data/www/.ssh/authorized_keys
-#chown -R www:www /data/www/.ssh
-
 set -e
 set -u
 
+# Unlock 'www' account
 PASS=$(pwgen -c -n -1 16)
 echo "www:$PASS"  | chpasswd
 
-curl -L https://github.com/million12/docker-php-app-ssh/github-keys.sh | bash -s $IMPORT_GITHUB_PUB_KEYS
+# Make sure 'www' home directory exists...
+mkdir -p /data/www && chown www /data/www
+
+# Read passed to container ENV IMPORT_GITHUB_PUB_KEYS variable with coma-separated
+# user list and add public key(s) for these users to authorized_keys on 'www' account.
+for user in $(echo $IMPORT_GITHUB_PUB_KEYS | tr "," "\n"); do
+  echo "user: $user"
+  su www -c "/github-keys.sh $user"
+done
