@@ -30,3 +30,7 @@ dev:
 ## Author
 
 Marcin ryzy Ryzycki <marcin@m12.io>
+
+---
+
+**Sponsored by** [Typostrap.io - the new prototyping tool](http://typostrap.io/) for building highly-interactive prototypes of your website or web app. Built on top of TYPO3 Neos CMS and Zurb Foundation framework.
