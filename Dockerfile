@@ -7,7 +7,7 @@ MAINTAINER Marcin Ryzycki marcin@m12.io
 # - Remove non-necessary services from parent image 'million12/php-app'
 # - Remove warning about missing locale while logging in via ssh
 RUN \
-  yum install -y openssh-server openssh-clients pwgen sudo vim mc links && \
+  yum install -y openssh-server openssh-clients pwgen sudo hostname patch vim mc links && \
   yum clean all && \
 
   ssh-keygen -q -b 1024 -N '' -t rsa -f /etc/ssh/ssh_host_rsa_key && \
