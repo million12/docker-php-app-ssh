@@ -1,0 +1,38 @@
+machine:
+  services:
+    - docker
+
+dependencies:  
+  pre:
+    - docker info && docker version
+
+  override:
+    - docker pull million12/php-app:latest
+
+# Run tests
+test:    
+  override:
+    - docker build -t million12/php-app-ssh .
+    
+    #
+    # Launch it without IMPORT_GITHUB_PUB_KEYS env variable and test if we get warning
+    #
+    - docker run -d --name=ssh-no-env million12/php-app-ssh
+    - docker logs -f ssh-no-env > ${CIRCLE_ARTIFACTS}/docker-ssh-no-env.log:
+        background: true
+    # Wait till container is fully configured
+    - while true; do if grep "sshd entered RUNNING state" ${CIRCLE_ARTIFACTS}/docker-ssh-no-env.log; then break; else sleep 1; fi done
+    # Test if there's warning message about IMPORT_GITHUB_PUB_KEYS not set
+    - cat ${CIRCLE_ARTIFACTS}/docker-ssh-no-env.log | grep 'IMPORT_GITHUB_PUB_KEYS is not set'
+    
+    #
+    # Launch it with correct IMPORT_GITHUB_PUB_KEYS env variable and test if we get ssh key imported
+    #
+    - docker run -d --name=ssh --env="IMPORT_GITHUB_PUB_KEYS=ryzy" million12/php-app-ssh
+    - docker logs -f ssh > ${CIRCLE_ARTIFACTS}/docker-ssh.log:
+        background: true
+    # Wait till container is fully configured
+    - while true; do if grep "sshd entered RUNNING state" ${CIRCLE_ARTIFACTS}/docker-ssh.log; then break; else sleep 1; fi done
+    # Test if there's warning message about IMPORT_GITHUB_PUB_KEYS not set
+    - cat ${CIRCLE_ARTIFACTS}/docker-ssh.log | grep 'Imported GitHub ryzy key'
+    - cat ${CIRCLE_ARTIFACTS}/docker-ssh.log | grep 'ssh-rsa'

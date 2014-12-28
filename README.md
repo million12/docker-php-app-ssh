@@ -1,4 +1,5 @@
 # Docker container with SSH and PHP
+[![Circle CI](https://circleci.com/gh/million12/docker-php-app-ssh.svg?style=svg)](https://circleci.com/gh/million12/docker-php-app-ssh)
 
 This is a Docker container [million12/php-app-ssh](https://registry.hub.docker.com/u/million12/php-app-ssh/) based on [million12/php-app](https://registry.hub.docker.com/u/million12/php-app/), with only one addition: running SSHD daemon. 
 
