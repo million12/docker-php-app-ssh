@@ -3,6 +3,7 @@ MAINTAINER Marcin Ryzycki marcin@m12.io
 
 # - Install OpenSSH server
 # - Generate required host keys
+# - Remove 'Defaults secure_path' from /etc/sudoers which overrides path when using 'sudo' command
 # - Add 'www' user to sudoers
 # - Remove non-necessary services from parent image 'million12/php-app'
 # - Remove warning about missing locale while logging in via ssh
@@ -19,6 +20,7 @@ RUN \
   sed -i -r 's/.?ChallengeResponseAuthentication.+/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config && \
   sed -i -r 's/.?PermitRootLogin.+/PermitRootLogin no/' /etc/ssh/sshd_config && \
 
+  sed -i '/secure_path/d' /etc/sudoers && \
   echo 'www  ALL=(ALL)  NOPASSWD: ALL' > /etc/sudoers.d/www && \
 
   rm -rf /config/init/10-nginx-data-dirs.sh /etc/supervisor.d/nginx.conf /etc/supervisor.d/php-fpm.conf && \
