@@ -17,6 +17,7 @@ RUN \
   
   sed -i -r 's/.?UseDNS\syes/UseDNS no/' /etc/ssh/sshd_config && \
   sed -i -r 's/.?PasswordAuthentication.+/PasswordAuthentication no/' /etc/ssh/sshd_config && \
+  sed -i -r 's/.?UsePAM.+/UsePAM no/' /etc/ssh/sshd_config && \
   sed -i -r 's/.?ChallengeResponseAuthentication.+/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config && \
   sed -i -r 's/.?PermitRootLogin.+/PermitRootLogin no/' /etc/ssh/sshd_config && \
 
