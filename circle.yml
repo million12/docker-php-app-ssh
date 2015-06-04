@@ -7,7 +7,7 @@ dependencies:
     - docker info && docker version
 
   override:
-    - docker pull million12/php-app:latest
+    - docker pull million12/nginx-php:latest
 
 # Run tests
 test:    
