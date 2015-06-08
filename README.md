@@ -1,9 +1,9 @@
 # Docker container with SSH and PHP
 [![Circle CI](https://circleci.com/gh/million12/docker-php-app-ssh.svg?style=svg)](https://circleci.com/gh/million12/docker-php-app-ssh)
 
-This is a Docker container [million12/php-app-ssh](https://registry.hub.docker.com/u/million12/php-app-ssh/) based on [million12/php-app](https://registry.hub.docker.com/u/million12/php-app/), with only one addition: running SSHD daemon. 
+This is a Docker container [million12/php-app-ssh](https://registry.hub.docker.com/u/million12/php-app-ssh/) based on [million12/nginx-php](https://registry.hub.docker.com/u/million12/nginx-php/), with only one addition: running SSHD daemon. 
 
-Because it shares the same container as other running PHP apps (if based on million12/php-app), it can be used for development purposes, to easily get into the container, perform command-line tasks (eg. composer install, npm, gulp), upload files via SFTP etc.
+Because it shares the same container as other running PHP apps (if based on `million12/nginx-php`), it can be used for development purposes, to easily get into the container, perform command-line tasks (eg. composer install, npm, gulp), upload files via SFTP etc.
 
 ## Keys management
 
