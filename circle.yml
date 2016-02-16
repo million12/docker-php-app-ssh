@@ -7,13 +7,11 @@ dependencies:
     - docker info && docker version
 
   override:
-    - docker pull million12/nginx-php:latest
+    - docker build -t million12/php-app-ssh .
 
 # Run tests
 test:    
   override:
-    - docker build -t million12/php-app-ssh .
-    
     #
     # Launch it without IMPORT_GITHUB_PUB_KEYS env variable and test if we get warning
     #
