@@ -1,9 +1,16 @@
 # Docker container with SSH and PHP
 [![Circle CI](https://circleci.com/gh/million12/docker-php-app-ssh.svg?style=svg)](https://circleci.com/gh/million12/docker-php-app-ssh)
 
-This is a Docker container [million12/php-app-ssh](https://registry.hub.docker.com/u/million12/php-app-ssh/) based on [million12/nginx-php](https://registry.hub.docker.com/u/million12/nginx-php/), with only one addition: running SSHD daemon. 
+This is a Docker container [million12/php-app-ssh](https://registry.hub.docker.com/u/million12/php-app-ssh/) based on [million12/nginx-php](https://registry.hub.docker.com/u/million12/nginx-php/), with **only one addition: running SSH** daemon.
 
-Because it shares the same container as other running PHP apps (if based on `million12/nginx-php`), it can be used for development purposes, to easily get into the container, perform command-line tasks (eg. composer install, npm, gulp), upload files via SFTP etc.
+Assuming you use `million12/nginx-php` for running the actual app, you can use this image as a side container to easily get into the container via ssh, perform command-line tasks (eg. composer install, npm, gulp), upload files via SFTP etc.
+
+For different PHP versions, look up different branches of this repository.  
+On Docker Hub you can find them under different tags:  
+* `million12/php-app-ssh:latest` - PHP 7.0 # built from `master` branch [![Circle CI](https://circleci.com/gh/million12/docker-php-app-ssh.svg?style=svg)](https://circleci.com/gh/million12/docker-php-app-ssh)
+* `million12/php-app-ssh:php70` - PHP 7.0 # built from `php70` branch [![Circle CI](https://circleci.com/gh/million12/docker-php-app-ssh/tree/php70.svg?style=svg)](https://circleci.com/gh/million12/docker-php-app-ssh/tree/php70)
+* `million12/php-app-ssh:php56` - PHP 5.6 # built from `php56` branch [![Circle CI](https://circleci.com/gh/million12/docker-php-app-ssh/tree/php56.svg?style=svg)](https://circleci.com/gh/million12/docker-php-app-ssh/tree/php56)
+* `million12/php-app-ssh:php55` - PHP 5.5 # built from `php55` branch [![Circle CI](https://circleci.com/gh/million12/docker-php-app-ssh/tree/php55.svg?style=svg)](https://circleci.com/gh/million12/docker-php-app-ssh/tree/php55)
 
 ## Keys management
 
@@ -34,4 +41,4 @@ Marcin ryzy Ryzycki <marcin@m12.io>
 
 ---
 
-**Sponsored by** [Typostrap.io - the new prototyping tool](http://typostrap.io/) for building highly-interactive prototypes of your website or web app. Built on top of TYPO3 Neos CMS and Zurb Foundation framework.
+**Sponsored by** [Prototype Brewery - the new prototyping tool](http://prototypebrewery.io/) for building highly-interactive prototypes of your website or web app. Built on top of [Neos CMS](https://www.neos.io/) and [Zurb Foundation](http://foundation.zurb.com/) framework.
