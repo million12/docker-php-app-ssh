@@ -1,14 +1,14 @@
-FROM million12/nginx-php:php-55
+FROM million12/nginx-php:php55
 MAINTAINER Marcin Ryzycki marcin@m12.io
 
 # - Install OpenSSH server
 # - Generate required host keys
 # - Remove 'Defaults secure_path' from /etc/sudoers which overrides path when using 'sudo' command
 # - Add 'www' user to sudoers
-# - Remove non-necessary services from parent image 'million12/php-app'
+# - Remove non-necessary Supervisord services from parent image 'million12/nginx-php'
 # - Remove warning about missing locale while logging in via ssh
 RUN \
-  yum install -y openssh-server openssh-clients pwgen sudo hostname patch vim mc links && \
+  yum install -y openssh-server pwgen sudo hostname vim mc links && \
   yum clean all && \
 
   ssh-keygen -q -b 1024 -N '' -t rsa -f /etc/ssh/ssh_host_rsa_key && \
