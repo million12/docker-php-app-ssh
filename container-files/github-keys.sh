@@ -18,14 +18,14 @@ if [ $rate_limit -eq 0 ];
   else
     echo "Importing $user's GitHub pub key(s) to `whoami` account..."
 
-	mkdir -p ~/.ssh
-	if ! [[ -f ~/.ssh/authorized_keys ]]; then
-	  echo "Creating new ~/.ssh/authorized_keys"
-	  touch ~/.ssh/authorized_keys
-	fi
+    mkdir -p ~/.ssh
+    if ! [[ -f ~/.ssh/authorized_keys ]]; then
+      echo "Creating new ~/.ssh/authorized_keys"
+      touch ~/.ssh/authorized_keys
+    fi
 
-	for key in $keys; do
-	  echo "Imported GitHub $user key: $key"
-	  grep -q "$key" ~/.ssh/authorized_keys || echo "$key ${user}@github" >> ~/.ssh/authorized_keys
-	done
+    for key in $keys; do
+      echo "Imported GitHub $user key: $key"
+      grep -q "$key" ~/.ssh/authorized_keys || echo "$key ${user}@github" >> ~/.ssh/authorized_keys
+    done
 fi
