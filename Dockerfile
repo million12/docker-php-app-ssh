@@ -1,4 +1,7 @@
-FROM million12/nginx-php:php70
+#
+# million12/php-app-ssh
+#
+FROM million12/nginx-php:latest
 MAINTAINER Marcin Ryzycki marcin@m12.io
 
 # - Install OpenSSH server
