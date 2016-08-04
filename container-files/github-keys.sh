@@ -4,6 +4,7 @@
 # Source: https://github.com/rtlong, https://gist.github.com/rtlong/6790049
 # Usage: /github-keys.sh | bash -s <github username>
 #
+IFS="$(printf '\n\t')"
 
 user=$1
 api_response=$(curl -sSLi https://api.github.com/users/$user/keys)
