@@ -11,12 +11,8 @@ MAINTAINER Marcin Ryzycki marcin@m12.io
 # - Remove non-necessary Supervisord services from parent image 'million12/nginx-php'
 # - Remove warning about missing locale while logging in via ssh
 RUN \
-  yum install -y openssh-server pwgen sudo hostname vim mc links && \
+  yum install -y openssh-server pwgen sudo vim mc links && \
   yum clean all && \
-
-  ssh-keygen -q -b 1024 -N '' -t rsa -f /etc/ssh/ssh_host_rsa_key && \
-  ssh-keygen -q -b 1024 -N '' -t dsa -f /etc/ssh/ssh_host_dsa_key && \
-  ssh-keygen -q -b 521 -N '' -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key && \
 
   sed -i -r 's/.?UseDNS\syes/UseDNS no/' /etc/ssh/sshd_config && \
   sed -i -r 's/.?PasswordAuthentication.+/PasswordAuthentication no/' /etc/ssh/sshd_config && \
